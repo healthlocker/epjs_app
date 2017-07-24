@@ -13,14 +13,9 @@ defmodule EpjsApp.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", EpjsApp do
-    pipe_through :browser # Use the default browser stack
+  scope "/api", EpjsApp do
+    pipe_through :api
 
     get "/", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", EpjsApp do
-  #   pipe_through :api
-  # end
 end
