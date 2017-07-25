@@ -35,9 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :epjs_app, EpjsApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "epjs_app_dev",
-  hostname: "localhost",
-  pool_size: 10
+  adapter: MssqlEcto,
+  hostname: System.get_env("READ_ONLY_HOSTNAME"),
+  username: System.get_env("READ_ONLY_USERNAME"),
+  password: System.get_env("READ_ONLY_PASSWORD"),
+  database: System.get_env("READ_ONLY_DATABASE")
