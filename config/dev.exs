@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :epjs_app, EpjsApp.Endpoint,
-  http: [port: 4000],
+  http: [port: 4001],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -35,9 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :epjs_app, EpjsApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "epjs_app_dev",
-  hostname: "localhost",
-  pool_size: 10
+  adapter: MssqlEcto,
+  hostname: System.get_env("READ_ONLY_HOSTNAME"),
+  username: System.get_env("READ_ONLY_USERNAME"),
+  password: System.get_env("READ_ONLY_PASSWORD"),
+  database: System.get_env("READ_ONLY_DATABASE")
