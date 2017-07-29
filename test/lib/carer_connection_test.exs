@@ -23,5 +23,12 @@ defmodule EpjsApp.CarerConnectionTest do
         |> Map.get(:Forename)
       assert user_forename == "Kat"
     end
+
+    test "gets nil if details are invalid" do
+      stringified_changeset = "{\"surname\":\"Name\",\"nhs_number\":\"uvhjbfnwqoekhfg8y9i\",\"forename\":\"Wrong\",\"date_of_birth\":\"1989-01-01T00:00:00Z\"}"
+      changeset = Poison.decode!(stringified_changeset)
+      result = CarerConnection.find_user(changeset)
+      assert result == nil
+    end
   end
 end
