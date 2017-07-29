@@ -81,4 +81,3 @@ defmodule EpjsApp.TeamMemberControllerTest do
     end
   end
 end
-"/epjsteammember/clinician-connection/get-patients"
