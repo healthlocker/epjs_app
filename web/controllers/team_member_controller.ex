@@ -1,6 +1,6 @@
 defmodule EpjsApp.TeamMemberController do
   use EpjsApp.Web, :controller
-  alias EpjsApp.{ClinicianConnection}
+  alias EpjsApp.{ClinicianConnection, CareTeam}
 
   def find_clinician(conn, %{"user_data" => user_data}) do
     decrypted_user_data = user_data
@@ -15,5 +15,13 @@ defmodule EpjsApp.TeamMemberController do
     |> ClinicianConnection.get_patients
 
     json conn, patient_details
+  end
+
+  def for(conn, %{"service_user" => service_user}) do
+    care_team =
+      service_user
+      |> Poison.decode!
+      |> CareTeam.for
+    json conn, care_team
   end
 end
