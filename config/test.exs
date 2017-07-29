@@ -17,3 +17,5 @@ config :epjs_app, EpjsApp.Repo,
   database: "epjs_app_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :epjs_app, :environment, :test
