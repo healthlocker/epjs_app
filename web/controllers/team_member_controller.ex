@@ -1,4 +1,4 @@
-defmodule EpjsApp.EpjsTeamMemberController do
+defmodule EpjsApp.TeamMemberController do
   use EpjsApp.Web, :controller
   alias EpjsApp.{ClinicianConnection}
 

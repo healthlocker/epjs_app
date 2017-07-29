@@ -10,8 +10,8 @@ defmodule EpjsApp.Router do
 
     get "/care-team/for", CareTeamController, :for
     get "/epjsuser/carer-connection/find-epjs-user", EpjsUserController, :find_epjs_user
-    get "/epjsteammember/clinician-connection/find-clinician", EpjsTeamMemberController, :find_clinician
-    get "/epjsteammember/clinician-connection/get-patients", EpjsTeamMemberController, :get_patients
+    get "/epjsteammember/clinician-connection/find-clinician", TeamMemberController, :find_clinician
+    get "/epjsteammember/clinician-connection/get-patients", TeamMemberController, :get_patients
     get "/epjspatientaddressdetails/address/get-address", AddressController, :get_address
 
   end
