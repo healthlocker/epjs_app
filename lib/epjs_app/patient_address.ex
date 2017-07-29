@@ -1,17 +1,10 @@
 defmodule EpjsApp.PatientAddress do
-  alias EpjsApp.{EPJSTeamMember, Repo, EPJSPatientAddressDetails}
+  alias EpjsApp.{Repo, EPJSPatientAddressDetails}
   import Ecto.Query
 
-  def for(user) do
-    query = from e in EPJSTeamMember,
-      where: e."Patient_ID" == ^user.slam_id
-
-    Repo.all(query)
-  end
-
-  def get_address(%{"service_user" => service_user}) do
+  def get_address(%{"slam_id" => slam_id}) do
     query = from e in EPJSPatientAddressDetails,
-      where: e."Patient_ID" == ^service_user.slam_id
+      where: e."Patient_ID" == ^slam_id
 
       Repo.one(query)
   end
