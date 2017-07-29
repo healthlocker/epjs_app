@@ -9,9 +9,10 @@ defmodule EpjsApp.CareTeamController do
   def for(conn, %{"service_user" => service_user}) do
   # pattern matches against params for the service user,
   # grabs the data and then uses it to make a call to EJPS DB
-    params = service_user |> Poison.decode!
-    %{"slam_id" => slam_id} = params
-    care_team = CareTeam.for(%{slam_id: slam_id})
+    care_team =
+      service_user
+      |> Poison.decode!
+      |> CareTeam.for
     json conn, care_team
   end
 end
