@@ -9,17 +9,19 @@ defmodule EpjsApp.ClinicianConnection do
     %{decrypted_time_str: decrypted_time_str, decrypted_user_guid: decrypted_user_guid, clinician: Repo.all(query)}
   end
 
-  def get_patients(%{"clinician" => clinician}) do
+  def get_patients(%{"email" => email}) do
     ids_query = from e in EPJSTeamMember,
-        where: e."Email" == ^clinician.email,
-        select: e."Patient_ID"
-    patient_ids = Repo.all(ids_query)
+      where: e."Email" == ^email,
+      select: e."Patient_ID"
+    patient_ids =
+      Repo.all(ids_query)
 
     patients = patient_ids
     |> Enum.map(fn id ->
       Repo.all(from e in EPJSUser,
       where: e."Patient_ID" == ^id)
     end)
+    |> List.flatten
 
     %{patient_ids: patient_ids, patients: patients}
   end

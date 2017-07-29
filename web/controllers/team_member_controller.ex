@@ -11,7 +11,7 @@ defmodule EpjsApp.TeamMemberController do
 
   def get_patients(conn, %{"clinician" => clinician}) do
     patient_details = clinician
-    |> Poison.decode
+    |> Poison.decode!
     |> ClinicianConnection.get_patients
 
     json conn, patient_details
