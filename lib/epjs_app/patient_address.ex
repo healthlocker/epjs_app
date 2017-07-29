@@ -1,5 +1,5 @@
 defmodule EpjsApp.PatientAddress do
-  alias EpjsApp.{Repo, EPJSPatientAddressDetails}
+  alias EpjsApp.{EPJSTeamMember, Repo, EPJSPatientAddressDetails}
   import Ecto.Query
 
   def for(user) do

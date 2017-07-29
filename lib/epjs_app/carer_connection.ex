@@ -16,9 +16,8 @@ defmodule EpjsApp.CarerConnection do
 
   def find_epjs_user(%{"service_user" => service_user}) do
     query = from e in EPJSUser,
-      where: e."Patient_ID" == ^service_user.slam_id)
+      where: e."Patient_ID" == ^service_user.slam_id
 
     Repo.one(query)
   end
-
 end

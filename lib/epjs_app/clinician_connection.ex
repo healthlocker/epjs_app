@@ -1,6 +1,6 @@
 defmodule EpjsApp.ClinicianConnection do
   import Ecto.Query
-  alias EpjsApp.{EPJSTeamMember, Repo, DecryptUser}
+  alias EpjsApp.{EPJSUser, EPJSTeamMember, Repo, DecryptUser}
 
   def find_clinician(%{"user_data" => user_data}) do
     [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
@@ -9,7 +9,7 @@ defmodule EpjsApp.ClinicianConnection do
     %{decrypted_time_str: decrypted_time_str, decrypted_user_guid: decrypted_user_guid, clinician: Repo.all(query)}
   end
 
-  def get_patients(%{"clinician" => clincian}) do
+  def get_patients(%{"clinician" => clinician}) do
     ids_query = from e in EPJSTeamMember,
         where: e."Email" == ^clinician.email,
         select: e."Patient_ID"
@@ -17,7 +17,7 @@ defmodule EpjsApp.ClinicianConnection do
 
     patients = patient_ids
     |> Enum.map(fn id ->
-      ReadOnlyRepo.all(from e in EPJSUser,
+      Repo.all(from e in EPJSUser,
       where: e."Patient_ID" == ^id)
     end)
 

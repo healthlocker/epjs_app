@@ -6,7 +6,7 @@ defmodule EpjsApp.EpjsUserController do
     epjs_user =
       changeset
       |> Poison.decode
-      |> CarerConnection.find_epjs_user(decoded_changeset)
+      |> CarerConnection.find_epjs_user
     json conn, epjs_user
   end
 end

@@ -1,6 +1,6 @@
-defmodule EpjsApp.CareTeamController do
+defmodule EpjsApp.AddressController do
   use EpjsApp.Web, :controller
-  alias EpjsApp.{PatientAddress}
+  alias EpjsApp.{PatientAddress, CareTeam}
 
   def for(conn, %{"service_user" => service_user}) do
   # pattern matches against params for the service user,
@@ -17,6 +17,6 @@ defmodule EpjsApp.CareTeamController do
       |> Poison.decode!
       |> PatientAddress.get_address
 
-    json conn, address 
+    json conn, address
   end
 end

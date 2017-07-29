@@ -1,6 +1,6 @@
 defmodule EpjsApp.PageControllerTest do
   use EpjsApp.ConnCase
-  alias EpjsApp.{CareTeam, EPJSTeamMember, Repo}
+  alias EpjsApp.{EPJSTeamMember, Repo}
 
   setup %{} do
     Repo.insert!(%EPJSTeamMember{
