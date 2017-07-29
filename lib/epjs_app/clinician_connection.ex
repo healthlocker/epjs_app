@@ -2,7 +2,7 @@ defmodule EpjsApp.ClinicianConnection do
   import Ecto.Query
   alias EpjsApp.{EPJSUser, EPJSTeamMember, Repo, DecryptUser}
 
-  def find_clinician(%{"user_data" => user_data}) do
+  def find_clinician(user_data) do
     [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
     query = from etm in EPJSTeamMember, where: etm."User_Guid" == ^decrypted_user_guid
 

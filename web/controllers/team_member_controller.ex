@@ -4,7 +4,6 @@ defmodule EpjsApp.TeamMemberController do
 
   def find_clinician(conn, %{"user_data" => user_data}) do
     decrypted_user_data = user_data
-    |> Poison.decode
     |> ClinicianConnection.find_clinician
 
     json conn, decrypted_user_data
