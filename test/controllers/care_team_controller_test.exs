@@ -1,4 +1,4 @@
-defmodule EpjsApp.PageControllerTest do
+defmodule EpjsApp.CareTeamControllerTest do
   use EpjsApp.ConnCase
   alias EpjsApp.{EPJSTeamMember, Repo}
 
@@ -16,12 +16,20 @@ defmodule EpjsApp.PageControllerTest do
     :ok
   end
 
-  describe "care team controller works as expected" do
+  describe "care team controller returns json response with valid slam_id" do
     test "GET /care-team/for?service_user", %{conn: conn} do
-
       stringified_user = %{slam_id: 123} |> Poison.encode!
       conn = get conn, "http://localhost:4001/care-team/for?service_user=" <> stringified_user
       assert json_response(conn, 200)
+    end
+  end
+
+  describe  "care team controller returns null json response with invalid slam_id" do
+    test "GET /care-team/for?service_user", %{conn: conn} do
+      stringified_user = %{slam_id: 456} |> Poison.encode!
+      conn = get conn, "http://localhost:4001/care-team/for?service_user=" <> stringified_user
+      assert json_response(conn, 200)
+      assert conn.resp_body == "[]"
     end
   end
 end
