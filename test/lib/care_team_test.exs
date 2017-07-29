@@ -24,5 +24,10 @@ defmodule EpjsApp.CareTeamTest do
         |> Map.get(:Email)
       assert clinician_email == "rob@email.com"
     end
+
+    test "gets empty list when there is no clinician for a user" do
+      clinician_list = CareTeam.for(%{"slam_id" => 456})
+      assert clinician_list == []
+    end
   end
 end
