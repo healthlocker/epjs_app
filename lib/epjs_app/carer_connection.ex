@@ -2,7 +2,7 @@ defmodule EpjsApp.CarerConnection do
   import Ecto.Query
   alias EpjsApp.{EPJSUser, Repo}
 
-  def find_epjs_user(%{"changes" => changes}) do
+  def find_user(%{"changes" => changes}) do
     %{"forename" => forename, "surname" => surname, "date_of_birth" => date_of_birth, "nhs_number" => nhs_number} = changes
 
     query = from e in EPJSUser,
@@ -14,7 +14,7 @@ defmodule EpjsApp.CarerConnection do
     Repo.one(query)
   end
 
-  def find_epjs_user(%{"service_user" => service_user}) do
+  def find_user(%{"service_user" => service_user}) do
     query = from e in EPJSUser,
       where: e."Patient_ID" == ^service_user.slam_id
 
