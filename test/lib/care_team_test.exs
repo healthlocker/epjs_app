@@ -19,10 +19,15 @@ defmodule EpjsApp.CareTeamTest do
   describe "CareTeam for function" do
     test "gets care team for a user from the database" do
       clinician_email =
-        CareTeam.for(%{slam_id: 123})
+        CareTeam.for(%{"slam_id" => 123})
         |> Enum.at(0)
         |> Map.get(:Email)
       assert clinician_email == "rob@email.com"
+    end
+
+    test "gets empty list when there is no clinician for a user" do
+      clinician_list = CareTeam.for(%{"slam_id" => 456})
+      assert clinician_list == []
     end
   end
 end
