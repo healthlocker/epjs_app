@@ -13,6 +13,10 @@ defmodule EpjsApp.Router do
     get "/team-member/clinician-connection/find-clinician", TeamMemberController, :find_clinician
     get "/team-member/clinician-connection/get-patients", TeamMemberController, :get_patients
     get "/patient-address-details/address/get-address", AddressController, :get_address
+  end
 
+  scope "/", EpjsApp do
+
+    get "/_version", GithubVersionController, :index
   end
 end
