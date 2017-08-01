@@ -32,7 +32,8 @@ defmodule EpjsApp.Mixfile do
         :phoenix_ecto,
         :postgrex,
         :mssqlex,
-        :mssql_ecto
+        :mssql_ecto,
+        :edeliver,
       ]
     ]
   end
@@ -55,7 +56,9 @@ defmodule EpjsApp.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:mssql_ecto, "~> 0.1"},
-      {:mssqlex, "~> 0.6"}
+      {:mssqlex, "~> 0.6"},
+      {:edeliver, "~> 1.4.0"},
+      {:distillery, "~> 1.4", runtime: false, warn_missing: false}
     ]
   end
 
