@@ -13,24 +13,6 @@ PRODUCTION_USER="root"
 DELIVER_TO="/home/hladmin"
 
 pre_erlang_clean_compile() {
-  status "Installing NPM dependencies"
-  __sync_remote "
-    [ -f ~/.profile ] && source ~/.profile
-    set -e
-
-    cd '$BUILD_AT'
-    npm install $SILENCE
-  "
-
-  status "Building static files"
-  __sync_remote "
-    [ -f ~/.profile ] && source ~/.profile
-    set -e
-
-    cd '$BUILD_AT'
-    mkdir -p priv/static
-    npm run deploy $SILENCE
-  "
 
   status "Running phoenix.digest"
   __sync_remote "
