@@ -10,11 +10,13 @@ defmodule EpjsApp.ClinicianConnection do
   end
 
   def get_patients(%{"email" => email}) do
+    IO.inspect(email, label: "-----> email")
     ids_query = from e in EPJSTeamMember,
       where: e."Email" == ^email,
       select: e."Patient_ID"
     patient_ids =
       Repo.all(ids_query)
+    IO.inspect(patient_ids, label: "-----> patient_ids")
 
     patients = patient_ids
     |> Enum.map(fn id ->

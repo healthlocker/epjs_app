@@ -55,6 +55,7 @@ defmodule EpjsApp.ClinicianConnectionTest do
     test "gets patients for a clinician by correct email" do
       email = %{"email" => "rob@email.com"}
       result = ClinicianConnection.get_patients(email)
+      IO.inspect(result, label: "------------>")
       assert result.patient_ids == [123]
       assert result.patients
       |> Enum.at(0)

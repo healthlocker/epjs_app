@@ -1,12 +1,11 @@
-defimpl Poison.Encoder, for: Any do
-  def encode(%{__struct__: _} = struct, options) do
-    map = struct
-          |> Map.from_struct
-          |> sanitize_map
-    Poison.Encoder.Map.encode(map, options)
+defmodule EpjsApp.Encoder do
+  def sanitize_map(list) when is_list(list) do
+    Enum.map(list, &sanitize_map/1)
   end
 
-  defp sanitize_map(map) do
-    Map.drop(map, [:__meta__, :__struct__])
+  def sanitize_map(map) do
+    map
+    |> Map.from_struct
+    |> Map.drop([:__meta__, :__struct__])
   end
 end
