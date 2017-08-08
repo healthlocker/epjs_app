@@ -5,7 +5,7 @@ defmodule EpjsApp.UserControllerTest do
   describe "epjs user is inserted into the db" do
     setup %{} do
       Repo.insert!(%EPJSUser{
-        Patient_ID: 123,
+        Patient_ID: 12345678,
         Forename: "Kat",
         Surname: "Bow",
         DOB: DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC"),
@@ -24,7 +24,7 @@ defmodule EpjsApp.UserControllerTest do
       conn = get conn, "/user/carer-connection/find-user?changeset=" <> changeset
       assert conn.resp_body
       |> Poison.decode!
-      |> Map.get("Patient_ID") == 123
+      |> Map.get("Patient_ID") == 12345678
     end
 
     test "GET /user/carer-connection/find-user returns epjs user with invalid info", %{conn: conn} do

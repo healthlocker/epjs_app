@@ -34,7 +34,7 @@ defmodule EpjsApp.TeamMemberControllerTest do
   describe "routes with clinician return lists" do
     setup %{} do
       Repo.insert!(%EPJSTeamMember{
-        Patient_ID: 123,
+        Patient_ID: 1234567,
         Staff_ID: 321,
         Staff_Name: "rob stallion",
         Job_Title: "clinician",
@@ -44,7 +44,7 @@ defmodule EpjsApp.TeamMemberControllerTest do
       })
 
       Repo.insert!(%EPJSUser{
-        Patient_ID: 123,
+        Patient_ID: 1234567,
         Forename: "kat",
         Surname: "bow"
         })
@@ -77,14 +77,14 @@ defmodule EpjsApp.TeamMemberControllerTest do
       conn = get conn, "/team-member/clinician-connection/get-patients?clinician=" <> clinician
       assert conn.resp_body
       |> Poison.decode!
-      |> Map.get("patient_ids") == [123]
+      |> Map.get("patient_ids") == [1234567]
     end
   end
 
   describe "care team controller returns json response with valid slam_id" do
     setup %{} do
       Repo.insert!(%EPJSTeamMember{
-        Patient_ID: 123,
+        Patient_ID: 1234567,
         Staff_ID: 321,
         Staff_Name: "rob stallion",
         Job_Title: "clinician",
